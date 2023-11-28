@@ -10,7 +10,7 @@ const apiUrl = "https://cenario2api.onrender.com";
 // const apiUrl = process.env.API_URL;
 
 export default function Home() {
-  const [name, setName] = useState("");
+  const [nome, setName] = useState("");
   const [users, setUsers] = useState([]);
   const [atualiza, setAtualiza] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -20,10 +20,10 @@ export default function Home() {
   }
 
   function include() {
-    if (name === "") return alert("Digite um nome!");
+    if (nome === "") return alert("Digite um nome!");
     setLoading(true);
     axios
-      .post(`${apiUrl}/user`, { name: name })
+      .post(`${apiUrl}/user`, { nome: nome })
       .then((response) => {
         console.log(response.data);
         alert("Usuário cadastrado com sucesso!");
@@ -44,10 +44,10 @@ export default function Home() {
   }
 
   function find() {
-    if (name === "") return alert("Digite um nome!");
+    if (nome === "") return alert("Digite um nome!");
     setLoading(true);
     axios
-      .get(`${apiUrl}/user/${name}`)
+      .get(`${apiUrl}/user/${nome}`)
       .then((response) => {
         setUsers(response.data);
         setLoading(false);
@@ -102,7 +102,7 @@ export default function Home() {
                 className={styles.input}
                 type="text"
                 placeholder="Nome"
-                name="name"
+                nome="nome"
                 onChange={changeInput}
               />
             </form>
@@ -123,7 +123,7 @@ export default function Home() {
             {users.length > 0 ? (
               users.map((item, index) => (
                 <div className={styles.item} key={index}>
-                  {item.name}
+                  {item.nome}
                 </div>
               ))
             ) : (
