@@ -11,7 +11,7 @@ const apiUrl = "https://cenario-2-back.onrender.com";
 
 export default function Home() {
   const [nome, setName] = useState("");
-  const [user, setUser] = useState([]);
+  const [users, setUsers] = useState([]);
   const [atualiza, setAtualiza] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -49,7 +49,7 @@ export default function Home() {
     axios
       .get(`${apiUrl}/user/${nome}`)
       .then((response) => {
-        setUser(response.data);
+        setUsers(response.data);
         setLoading(false);
       })
       .catch((error) => {
@@ -62,9 +62,9 @@ export default function Home() {
   function findAll() {
     setLoading(true);
     axios
-      .get(`${apiUrl}/user`)
+      .get(`${apiUrl}/users`)
       .then((response) => {
-        setUser(response.data);
+        setUsers(response.data);
         setLoading(false);
       })
       .catch((error) => {
@@ -120,8 +120,8 @@ export default function Home() {
           </div>
           <div className={styles.containerItems}>
             <p className={styles.list}>Resultado:</p>
-            {user.length > 0 ? (
-              user.map((item, index) => (
+            {users.length > 0 ? (
+              users.map((item, index) => (
                 <div className={styles.item} key={index}>
                   {item.nome}
                 </div>
