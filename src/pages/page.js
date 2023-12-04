@@ -62,7 +62,7 @@ export default function Home() {
   function findAll() {
     setLoading(true);
     axios
-      .get(`${apiUrl}/users`)
+      .get(`${apiUrl}/user`)
       .then((response) => {
         setUsers(response.data);
         setLoading(false);
